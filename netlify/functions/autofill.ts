@@ -15,7 +15,12 @@ export const handler: Handler = async (event) => {
 
     const body = JSON.parse(event.body || "{}");
 
-    const result = await handleAutofill(body);
+    const result = await handleAutofill(
+      body.mode || "CAROUSEL",
+      body.currentValues || {},
+      body.context || "topic",
+      body.language || "id"
+    );
 
     return {
       statusCode: 200,
