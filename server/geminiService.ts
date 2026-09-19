@@ -649,12 +649,48 @@ Rules:
 `;
 
   if (context === 'material') {
-      prompt += `
-Tugas: Buat naskah isi materi (script) yang terstruktur dan menarik untuk setiap slide carousel (Slide 1 sampai Slide ${safeValues.slideCount || '5'}).
-- Hubungkan dengan topik: "${safeValues.topic || safeValues.title || 'Tips Edukasi'}".
-- Berikan format berurutan: Slide 1 (Hook/Intro), Slide 2 (Masalah/Konsep), Slide 3 (Insight/Poin Penting), Slide 4 (Tips Praktis), Slide 5 (Kesimpulan & CTA).
+    const requestedSlideCount = parseInt(
+        String(safeValues.slideCount || '5').match(/\d+/)?.[0] || '5',
+        10
+    );
+
+    prompt += `
+Tugas: Buat naskah ISI MATERI untuk carousel dengan TEPAT ${requestedSlideCount} SLIDE.
+
+ATURAN JUMLAH SLIDE — SANGAT WAJIB:
+- Hasil WAJIB berisi tepat ${requestedSlideCount} slide.
+- Jangan membuat 5 slide jika jumlah yang diminta adalah ${requestedSlideCount}.
+- Jangan mengurangi jumlah slide.
+- Jangan menambahkan jumlah slide.
+- Nomor slide harus berurutan dari Slide 1 sampai Slide ${requestedSlideCount}.
+- Setiap slide harus memiliki isi yang berbeda dan relevan.
 - Tuliskan langsung teks materi untuk audiens tanpa instruksi visual teknis.
+
+TOPIK:
+"${safeValues.topic || safeValues.title || 'Tips Edukasi'}"
+
+TARGET AUDIENS:
+"${safeValues.targetAudience || 'Umum'}"
+
+GAYA BAHASA:
+"${safeValues.languageStyle || 'Santai'}"
+
+KATEGORI/GENRE:
+"${safeValues.genre || 'Edukasi'}"
+
+JENIS HOOK:
+"${safeValues.hookType || 'Problem Solving'}"
+
+STRUKTUR:
+- Slide 1: Hook / pembuka yang menarik dan sesuai jenis hook yang dipilih.
+- Slide 2 sampai Slide ${Math.max(2, requestedSlideCount - 1)}: Materi utama, insight, kesalahan, tips, contoh, atau langkah praktis yang relevan dengan topik.
+- Slide ${requestedSlideCount}: Kesimpulan + CTA yang relevan dengan materi.
+
+PENTING:
+Jika jumlah slide = ${requestedSlideCount}, output HARUS berhenti tepat di Slide ${requestedSlideCount}.
+Jangan membuat "Slide ${requestedSlideCount + 1}".
 `;
+}
   } else if (context === 'title') {
       prompt += `
 Tugas: Buat judul / headline HOOK yang sangat menarik dan scroll-stopping untuk topik: "${safeValues.topic || 'Edukasi Praktis'}".
