@@ -1,1 +1,16 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
 
+[functions]
+  directory = "netlify/functions"
+
+[[redirects]]
+  from = "/api/autofill"
+  to = "/.netlify/functions/autofill"
+  status = 200
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
