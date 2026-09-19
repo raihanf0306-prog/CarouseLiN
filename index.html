@@ -1,0 +1,233 @@
+
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Remix Remix CAROUSELY - SWA</title>
+    <meta name="description" content="Platform untuk menghasilkan prompt poster berkualitas tinggi untuk AI Image Generators. Optimalkan konten edukasimu dengan mudah." />
+    <meta property="og:title" content="Remix Remix CAROUSELY - SWA" />
+    <meta property="og:description" content="Platform untuk menghasilkan prompt poster berkualitas tinggi untuk AI Image Generators. Optimalkan konten edukasimu dengan mudah." />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            colors: {
+              brand: {
+                DEFAULT: '#1455D9',
+                deep: '#0B2D78',
+                navy: '#071B4D',
+                electric: '#1D6BFF',
+                light: '#EAF3FF',
+                pale: '#F5F9FF',
+              }
+            },
+            fontFamily: {
+              pixel: ['"Press Start 2P"', 'monospace'],
+              retro: ['Syne', 'Space Grotesk', 'sans-serif'],
+              tech: ['Space Grotesk', 'sans-serif'],
+              mono: ['JetBrains Mono', 'monospace'],
+              sans: ['Plus Jakarta Sans', 'Inter', 'sans-serif'],
+            }
+          }
+        }
+      }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Press+Start+2P&family=Space+Grotesk:wght@500;600;700;800&family=Syne:wght@700;800;900&display=swap" rel="stylesheet">
+    <style>
+      body {
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        background-color: #F5F9FF;
+        color: #071B4D;
+        letter-spacing: -0.01em;
+      }
+      .font-retro {
+        font-family: 'Syne', 'Space Grotesk', sans-serif;
+      }
+      .font-tech {
+        font-family: 'Space Grotesk', sans-serif;
+      }
+      .font-pixel {
+        font-family: 'Press Start 2P', monospace;
+      }
+      /* Retro game scanlines & grid */
+      .game-scanlines {
+        background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
+        background-size: 100% 4px, 6px 100%;
+      }
+      /* PC Game Hazard Stripes & Lines */
+      .game-hazard-stripes {
+        background: repeating-linear-gradient(
+          -45deg,
+          rgba(20, 85, 217, 0.18),
+          rgba(20, 85, 217, 0.18) 8px,
+          transparent 8px,
+          transparent 16px
+        );
+      }
+      .dark .game-hazard-stripes {
+        background: repeating-linear-gradient(
+          -45deg,
+          rgba(29, 107, 255, 0.25),
+          rgba(29, 107, 255, 0.25) 8px,
+          transparent 8px,
+          transparent 16px
+        );
+      }
+      .game-amber-stripes {
+        background: repeating-linear-gradient(
+          -45deg,
+          rgba(245, 158, 11, 0.3),
+          rgba(245, 158, 11, 0.3) 6px,
+          transparent 6px,
+          transparent 12px
+        );
+      }
+      /* PC Game Tech Grid & Dot Matrix */
+      .pixel-dot-pattern {
+        background-image: radial-gradient(rgba(20, 85, 217, 0.35) 1.5px, transparent 1.5px);
+        background-size: 10px 10px;
+      }
+      .dark .pixel-dot-pattern {
+        background-image: radial-gradient(rgba(56, 189, 248, 0.35) 1.5px, transparent 1.5px);
+        background-size: 10px 10px;
+      }
+      /* PC Game 3D Tactical Borders & Buttons */
+      .game-btn-3d {
+        box-shadow: 0 4px 0 #071B4D;
+        transition: transform 0.08s ease, box-shadow 0.08s ease;
+      }
+      .game-btn-3d:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 5px 0 #071B4D;
+      }
+      .game-btn-3d:active {
+        transform: translateY(3px);
+        box-shadow: 0 1px 0 #071B4D;
+      }
+      .dark .game-btn-3d {
+        box-shadow: 0 4px 0 #020714;
+      }
+      .dark .game-btn-3d:hover {
+        box-shadow: 0 5px 0 #020714;
+      }
+      .dark .game-btn-3d:active {
+        box-shadow: 0 1px 0 #020714;
+      }
+      /* PC Game Corner L-Brackets */
+      .pc-corner-l::before {
+        content: '';
+        position: absolute;
+        top: -2px;
+        left: -2px;
+        width: 10px;
+        height: 10px;
+        border-top: 3px solid #1455D9;
+        border-left: 3px solid #1455D9;
+        pointer-events: none;
+      }
+      .pc-corner-l::after {
+        content: '';
+        position: absolute;
+        bottom: -2px;
+        right: -2px;
+        width: 10px;
+        height: 10px;
+        border-bottom: 3px solid #1455D9;
+        border-right: 3px solid #1455D9;
+        pointer-events: none;
+      }
+      .dark .pc-corner-l::before {
+        border-color: #38BDF8;
+      }
+      .dark .pc-corner-l::after {
+        border-color: #38BDF8;
+      }
+      /* Retro Game 3D Pixel Borders & Shadows */
+      .game-box-shadow {
+        box-shadow: 4px 4px 0px #071B4D;
+      }
+      .game-box-shadow-lg {
+        box-shadow: 6px 6px 0px #071B4D;
+      }
+      .dark .game-box-shadow {
+        box-shadow: 4px 4px 0px #020714;
+      }
+      .dark .game-box-shadow-lg {
+        box-shadow: 6px 6px 0px #020714;
+      }
+      /* Blueprint technical grid */
+      .blueprint-grid {
+        background-image: 
+          linear-gradient(to right, rgba(20, 85, 217, 0.08) 1px, transparent 1px),
+          linear-gradient(to bottom, rgba(20, 85, 217, 0.08) 1px, transparent 1px);
+        background-size: 32px 32px;
+      }
+      .dark .blueprint-grid {
+        background-image: 
+          linear-gradient(to right, rgba(29, 107, 255, 0.12) 1px, transparent 1px),
+          linear-gradient(to bottom, rgba(29, 107, 255, 0.12) 1px, transparent 1px);
+        background-size: 32px 32px;
+      }
+      /* Retro software shadows */
+      .retro-shadow {
+        box-shadow: 3px 3px 0px #071B4D;
+      }
+      .retro-shadow-blue {
+        box-shadow: 3px 3px 0px #1455D9;
+      }
+      .retro-shadow-lg {
+        box-shadow: 5px 5px 0px #071B4D;
+      }
+      .dark .retro-shadow,
+      .dark .retro-shadow-blue,
+      .dark .retro-shadow-lg {
+        box-shadow: 4px 4px 0px #030C22;
+      }
+      /* Custom Scrollbar for Retro Interface */
+      ::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #EAF3FF;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #1455D9;
+        border-radius: 0px;
+      }
+      .dark ::-webkit-scrollbar-track {
+        background: #07132B; 
+      }
+      .dark ::-webkit-scrollbar-thumb {
+        background: #1D6BFF; 
+      }
+      @keyframes floatSlow {
+        0%, 100% { transform: translateY(0px); }
+        50% { transform: translateY(-8px); }
+      }
+      .animate-float-slow {
+        animation: floatSlow 5s ease-in-out infinite;
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react/": "https://esm.sh/react@^19.2.3/",
+    "react": "https://esm.sh/react@^19.2.3",
+    "lucide-react": "https://esm.sh/lucide-react@^0.562.0",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+    "@google/genai": "https://esm.sh/@google/genai@^1.35.0"
+  }
+}
+</script>
+</head>
+  <body class="blueprint-grid min-h-screen">
+    <div id="root"></div>
+    <script type="module" src="./index.tsx"></script>
+  </body>
+</html>

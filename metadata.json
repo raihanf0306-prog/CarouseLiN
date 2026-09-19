@@ -1,0 +1,8 @@
+{
+  "name": "Remix Remix CAROUSELY - SWA",
+  "description": "Platform untuk menghasilkan prompt poster berkualitas tinggi untuk AI Image Generators. Optimalkan konten edukasimu dengan mudah.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
