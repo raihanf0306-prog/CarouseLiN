@@ -690,7 +690,6 @@ PENTING:
 Jika jumlah slide = ${requestedSlideCount}, output HARUS berhenti tepat di Slide ${requestedSlideCount}.
 Jangan membuat "Slide ${requestedSlideCount + 1}".
 `;
-}
   } else if (context === 'title') {
       prompt += `
 Tugas: Buat judul / headline HOOK yang sangat menarik dan scroll-stopping untuk topik: "${safeValues.topic || 'Edukasi Praktis'}".
